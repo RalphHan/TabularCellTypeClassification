@@ -20,6 +20,11 @@ from functools import reduce
 import re
 import tabulate
 
+from helpers import (CellDatasetInMemory, TableCellSample, Preprocess, SentEnc,
+        label2ind, split_train_test, get_nonempty_cells,
+        get_annotations, get_cevectarr, get_fevectarr,
+        get_class_weights, get_df)
+
 def predict_labels(t, cl_model, ce_model, fe_model, senc, mode='ce+f', device='cpu'):
     if 'ce' in mode: ce_dim = ce_model.encdim*2
     if 'f' in mode: fenc_dim = fe_model.encdim
@@ -182,10 +187,6 @@ if __name__ == '__main__':
     spec = json.load(open(FLAGS.spec_path))
 
     sys.path.append(FLAGS.infersent_source)
-    from InferSent.models import InferSent
-    from helpers import (CellDatasetInMemory, TableCellSample, Preprocess, SentEnc,
-            label2ind, split_train_test, get_nonempty_cells,
-            get_annotations, get_cevectarr, get_fevectarr,
-            get_class_weights, get_df)
+
     main(spec)
     
