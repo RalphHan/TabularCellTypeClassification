@@ -14,7 +14,7 @@ def load(ce_model_path, fe_model_path, cl_model_path, w2v_path, vocab_size, infe
     from helpers import Preprocess, SentEnc, label2ind
 
     mode = 'ce+f'
-    device = 'cpu'
+    device = 'cuda'
     ce_dim = 512
     senc_dim = 4096
     window = 2
