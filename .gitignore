@@ -1,4 +1,4 @@
 .DS_Store
 deploy/GloVe
 deploy/sample_models
-deploy/test_prediction.ipynb
+*.ipynb
