@@ -9,12 +9,11 @@ sys.path.append('../code/src/')
 from models import ClassificationModel, CEModel, FeatEnc
 from excel_toolkit import get_sheet_names, get_sheet_tarr, get_feature_array
 
-def load(ce_model_path, fe_model_path, cl_model_path, w2v_path, vocab_size, infersent_source, infersent_model):
+def load(ce_model_path, fe_model_path, cl_model_path, w2v_path, vocab_size, infersent_source, infersent_model,device='cpu'):
     sys.path.append(infersent_source)
     from helpers import Preprocess, SentEnc, label2ind
 
     mode = 'ce+f'
-    device = 'cuda'
     ce_dim = 512
     senc_dim = 4096
     window = 2
@@ -64,8 +63,8 @@ def process(fname,models):
         result[sname] = dict(text=tarr.tolist(), labels=labels.tolist(), labels_probs=probs.tolist())
     return result
 
-def main(fname, ce_model_path, fe_model_path, cl_model_path, w2v_path, vocab_size, infersent_source, infersent_model):
-    models=load(ce_model_path, fe_model_path, cl_model_path, w2v_path, vocab_size, infersent_source, infersent_model)
+def main(fname, ce_model_path, fe_model_path, cl_model_path, w2v_path, vocab_size, infersent_source, infersent_model,device='cpu'):
+    models=load(ce_model_path, fe_model_path, cl_model_path, w2v_path, vocab_size, infersent_source, infersent_model,device)
     result=process(fname,models)
     return result
 
