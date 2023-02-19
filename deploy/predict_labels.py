@@ -51,6 +51,7 @@ def process(fname,models):
     for sname in snames:
         tarr, n, m = get_sheet_tarr(fname, snames[0], file_type=file_type)
         ftarr = get_feature_array(fname, snames[0], file_type=file_type)
+        print(ftarr)
         table = dict(table_array=tarr, feature_array=ftarr)
 
         sentences = set()
