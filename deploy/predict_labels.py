@@ -43,12 +43,14 @@ def load(ce_model_path, fe_model_path, cl_model_path, w2v_path, vocab_size, infe
 def process(fname,models):
     from test_cl import predict_labels
     senc,cl_model, ce_model, fe_model, senc, mode, device, label2ind=models
-    snames = get_sheet_names(fname, file_type='xls')
+    file_type=fname.rsplit('.',1)[-1]
+    assert file_type in {'csv','xls','xlsx'}
+    snames = get_sheet_names(fname, file_type=file_type)
 
     result = dict()
     for sname in snames:
-        tarr, n, m = get_sheet_tarr(fname, snames[0], file_type='xls')
-        ftarr = get_feature_array(fname, snames[0], file_type='xls')
+        tarr, n, m = get_sheet_tarr(fname, snames[0], file_type=file_type)
+        ftarr = get_feature_array(fname, snames[0], file_type=file_type)
         table = dict(table_array=tarr, feature_array=ftarr)
 
         sentences = set()
