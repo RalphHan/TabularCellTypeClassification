@@ -116,7 +116,7 @@ def get_sheet_tarr(fpath, sname, file_type='xlsx', max_cols=100, max_rows=10000)
             rvals = sheet.row_values(ri)
             sheet_array[ri] = rvals[:m]
         book.release_resources()
-            
+    print(sheet_array)
     if sheet_array.shape[0] > 0 and sheet_array.shape[1] > 0:
         vf = np.vectorize(lambda x: str(x).strip())
         sheet_array = vf(sheet_array)
