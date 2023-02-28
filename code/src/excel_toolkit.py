@@ -73,15 +73,16 @@ def get_excel_range_dimension(r):
     return (rrow-lrow+1, rcol-lcol+1)
 
 def get_sheet_names(fpath, file_type='xlsx'):
-    res = []
     if file_type == 'xlsx':
         book = openpyxl.load_workbook(fpath, read_only=False, data_only=True)
         sheet_names = book.sheetnames
         book.close()
-    else:
+    elif file_type == 'xls':
         book = xlrd.open_workbook(fpath)
         sheet_names = book.sheet_names()
         book.release_resources()
+    else:
+        sheet_names=[0]
     return sheet_names
 
 def get_sheet_tarr(fpath, sname, file_type='xlsx', max_cols=100, max_rows=10000):
