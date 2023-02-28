@@ -41,6 +41,8 @@ def locate_attribute(texts):
         if len(set(['::'.join(x) for x in texts[:,:colx+1]]))==texts.shape[0]:
             return colx
 
+    return texts.shape[1]-1
+
 
 
 def rule_predict(fname):
