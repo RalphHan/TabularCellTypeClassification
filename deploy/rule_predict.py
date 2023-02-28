@@ -37,6 +37,7 @@ def locate_header(texts):
     return data_st
 
 def locate_attribute(texts):
+    return 0
     for colx in range(texts.shape[1]):
         if len(set(['::'.join(x) for x in texts[:,:colx+1]]))==texts.shape[0]:
             return colx
@@ -61,8 +62,8 @@ def rule_predict(fname):
         labels[:i]=3
         labels[j+1:]=5
         labels[i:i+data_st]=2
-        labels[i+data_st+1:j+1,:attr_ed+1]=0
-        labels[i+data_st+1:j+1,attr_ed+1:]=1
+        labels[i+data_st:j+1,:attr_ed+1]=0
+        labels[i+data_st:j+1,attr_ed+1:]=1
         result[sname] = dict(text=tarr.tolist(), labels=labels.tolist())
 
     return result
